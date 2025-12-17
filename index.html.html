@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Английский для путешествий</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0e17;
+        --text: #f0f4ff;
+        --accent: #1de9b6; /* бирюзовый */
+        --gold: #ffcc5c; /* тёплый золотистый */
+        --orange: #ff9e6d; /* оранжевый заката */
+        --card-bg: rgba(18, 25, 40, 0.6);
+        --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-image: radial-gradient(circle at top right, rgba(29, 233, 182, 0.05), transparent 30%),
+                          radial-gradient(circle at bottom left, rgba(255, 204, 92, 0.05), transparent 30%);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        padding: 80px 0 40px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, var(--accent), var(--gold));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 20px rgba(29, 233, 182, 0.2);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: #cbd2e6;
+      }
+
+      .section {
+        padding: 60px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--accent);
+        position: relative;
+        display: inline-block;
+      }
+
+      h2::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50%;
+        height: 3px;
+        background: var(--gold);
+        border-radius: 2px;
+      }
+
+      .for-whom, .requirements, .schedule, .price {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .card {
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        flex: 1;
+        min-width: 250px;
+        max-width: 500px;
+        transition: var(--transition);
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(29, 233, 182, 0.15);
+      }
+
+      .lesson {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      }
+
+      .lesson:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .lesson-number {
+        background: var(--gold);
+        color: #0a0e17;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+
+      .why-list {
+        list-style: none;
+        padding-left: 20px;
+      }
+
+      .why-list li {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .why-list li::before {
+        content: '•';
+        color: var(--accent);
+        font-size: 1.4rem;
+        position: absolute;
+        left: 0;
+        top: -3px;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 18px 0;
+        background: linear-gradient(90deg, var(--accent), var(--gold));
+        color: #0a0e17;
+        font-weight: 700;
+        font-size: 1.3rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 6px 20px rgba(29, 233, 182, 0.4);
+        transition: var(--transition);
+        letter-spacing: 0.5px;
+      }
+
+      .btn:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px rgba(255, 204, 92, 0.5);
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 0 80px;
+        color: #a0aec0;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+        .subtitle {
+          font-size: 1rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+        }
+        .btn {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        return (
+          <>
+            <header className="container">
+              <h1>Английский для путешествий</h1>
+              <p className="subtitle">
+                Мечтаете свободно общаться за границей — от заказа кофе до поиска утраченного чемодана? 
+                Этот курс научит вашего ребёнка реальному разговорному английскому, который пригодится 
+                в отпуске, поездках и будущих путешествиях!
+              </p>
+            </header>
+
+            <main>
+              <section className="section container">
+                <h2>Для кого курс</h2>
+                <div className="for-whom">
+                  <div className="card">
+                    <h3>4–5 класс</h3>
+                  </div>
+                  <div className="card">
+                    <h3>6–8 класс</h3>
+                  </div>
+                </div>
+              </section>
+
+              <section className="section container">
+                <h2>Программа курса</h2>
+                <div className="card">
+                  {[1, 2, 3, 4, 5, '6–8', 9, 10].map((num, i) => {
+                    const titles = [
+                      "Аэропорт без стресса",
+                      "В отеле: заселение и помощь",
+                      "Кафе и рестораны",
+                      "На улице: ориентирование и просьбы",
+                      "Экстренные случаи",
+                      "Туризм и развлечения",
+                      "Дружба в путешествиях",
+                      "Дипломный проект: «Мой идеальный отпуск»"
+                    ];
+                    const descriptions = [
+                      "Регистрация, паспортный контроль, вопросы на таможне — всё на английском.\n👉 Уверенность уже в первые часы за границей.",
+                      "Как попросить сменить номер, вызвать уборку или спросить про Wi-Fi.\n👉 Практика вежливых фраз и повседневной лексики.",
+                      "Заказ еды, вопросы про аллергены, счёт и чаевые.\n👉 Развитие гастрономического словаря и уверенности в общении.",
+                      "Как спросить дорогу, вызвать такси или найти аптеку.\n👉 Понимание устной речи и произношения в реальных ситуациях.",
+                      "Потеря вещей, болезнь, помощь полиции — всё это на английском.\n👉 Важные фразы, которые могут спасти отпуск.",
+                      "Покупка билетов, экскурсии, общение с гидами, музеи и парки.\n👉 Погружение в культурный контекст через язык.",
+                      "Как познакомиться с другими детьми или подростками за границей.\n👉 Игровая практика диалогов и неформального общения.",
+                      "Ребёнок планирует воображаемое путешествие и представляет его на английском.\n👉 Развитие связной речи и творческого самовыражения."
+                    ];
+                    return (
+                      <div key={num} className="lesson">
+                        <div className="lesson-number">{num}</div>
+                        <div>
+                          <strong>{titles[i]}</strong><br />
+                          {descriptions[i]}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+
+              <section className="section container">
+                <h2>Почему этот курс особенный?</h2>
+                <ul className="why-list">
+                  <li>Акцент на практическую, живую речь, а не на грамматику ради грамматики.</li>
+                  <li>Все ситуации — из реальной жизни путешественника.</li>
+                  <li>Интерактивные задания: ролевые игры, аудиоситуации, мини-квесты.</li>
+                  <li>Ребёнок выходит на уровень <strong>A2–B1 (Pre-Intermediate)</strong> за курс.</li>
+                </ul>
+              </section>
+
+              <section className="section container">
+                <h2>Что потребуется</h2>
+                <div className="requirements">
+                  <div className="card">
+                    Стационарный компьютер или ноутбук с наушниками и микрофоном
+                  </div>
+                  <div className="card">
+                    Стабильный интернет и Zoom
+                  </div>
+                </div>
+              </section>
+
+              <section className="section container">
+                <h2>Расписание</h2>
+                <div className="schedule">
+                  <div className="card">
+                    Четверг, 15:00 (МСК)<br />
+                    <strong>группа 4–5 класс</strong>
+                  </div>
+                  <div className="card">
+                    Пятница, 15:30 (МСК)<br />
+                    <strong>группа 6–8 класс</strong>
+                  </div>
+                </div>
+              </section>
+
+              <section className="section container">
+                <h2>Стоимость</h2>
+                <div className="price">
+                  <div className="card">
+                    Полный курс (10 уроков): <strong>12 000 руб</strong>
+                  </div>
+                  <div className="card">
+                    Абонемент: <strong>1 300 руб / урок</strong>
+                  </div>
+                </div>
+              </section>
+
+              <footer className="container">
+                <p>Группы маленькие — максимум 6 детей, чтобы каждый получил внимание.<br />
+                   Места ограничены!<br />
+                   👉 Запишитесь сейчас — и следующее путешествие станет первым, где ваш ребёнок заговорит по-английски без страха!</p>
+                <a href="https://t.me/OlgaVyacheslavovna" className="btn" target="_blank" rel="noopener noreferrer">
+                  Записаться на курс
+                </a>
+              </footer>
+            </main>
+          </>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
